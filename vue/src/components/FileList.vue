@@ -6,7 +6,9 @@ import { defineEmits } from "vue"
 
 import moment from "moment"
 
-import Readme from "../components/Readme.vue"
+import Readme from "@/components/Readme.vue"
+import GoogleAd from "@/components/GoogleAd.vue"
+
 
 // 正常显示 文件图标
 function file_ico(item) {
@@ -50,13 +52,18 @@ function dateFormat(time) {
 
 <template>
     <div class="nexmoe-item">
+        <GoogleAd />
         <div class="mdui-row">
             <ul class="mdui-list">
                 <li class="mdui-list-item th">
-                    <div class="mdui-col-xs-12 mdui-col-sm-6">文件名 <i class="mdui-icon material-icons icon-sort">expand_more</i></div>
-                    <div class="mdui-col-sm-2 mdui-text-right">修改时间 <i class="mdui-icon material-icons icon-sort">expand_more</i></div>
-                    <div class="mdui-col-sm-2 mdui-text-right">大小 <i class="mdui-icon material-icons icon-sort">expand_more</i></div>
-                    <div class="mdui-col-sm-2 mdui-text-right">操作 <i class="mdui-icon material-icons icon-sort">expand_more</i></div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-6">文件名 <i
+                            class="mdui-icon material-icons icon-sort">expand_more</i></div>
+                    <div class="mdui-col-sm-2 mdui-text-right">修改时间 <i
+                            class="mdui-icon material-icons icon-sort">expand_more</i></div>
+                    <div class="mdui-col-sm-2 mdui-text-right">大小 <i
+                            class="mdui-icon material-icons icon-sort">expand_more</i></div>
+                    <div class="mdui-col-sm-2 mdui-text-right">操作 <i
+                            class="mdui-icon material-icons icon-sort">expand_more</i></div>
                 </li>
                 <template v-if="path != '/'">
                     <li class="mdui-list-item mdui-ripple">
@@ -68,7 +75,7 @@ function dateFormat(time) {
                             <div class="mdui-col-sm-3 mdui-text-right"></div>
                             <div class="mdui-col-sm-2 mdui-text-right"></div>
                         </RouterLink>
-                    </li> 
+                    </li>
                 </template>
                 <template v-if="FileList.length > 0">
                     <template v-for="f in FileList" :key="f.file_fid">
@@ -76,30 +83,32 @@ function dateFormat(time) {
                             <RouterLink :to="f.file_path">
                                 <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-text-truncate">
                                     <i class="mdui-icon material-icons">folder_open</i>
-                                    <span>{{f.file_name}}</span>
+                                    <span>{{ f.file_name }}</span>
                                 </div>
 
                                 <div class="mdui-col-sm-2 mdui-text-right">{{ f.lastModifiedDateTime }}</div>
                                 <div class="mdui-col-sm-2 mdui-text-right">{{ human_filesize(f.file_size) }}</div>
                                 <div class="mdui-col-sm-2 mdui-text-right">
-                                    <i v-if="f.file_type !== 'folder'" class="mdui-icon material-icons icon-sort">file_download</i>
+                                    <i v-if="f.file_type !== 'folder'"
+                                        class="mdui-icon material-icons icon-sort">file_download</i>
                                 </div>
                             </RouterLink>
-                        </li>        
+                        </li>
                         <li v-else class="mdui-list-item mdui-ripple">
                             <a :href="f.file_downloadUrl" target="_blank">
                                 <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-text-truncate">
-                                    <i class="mdui-icon material-icons">{{file_ico(f.file_type)}}</i>                            
-                                    <span>{{f.file_name}}</span>
+                                    <i class="mdui-icon material-icons">{{ file_ico(f.file_type) }}</i>
+                                    <span>{{ f.file_name }}</span>
                                 </div>
 
                                 <div class="mdui-col-sm-2 mdui-text-right">{{ f.lastModifiedDateTime }}</div>
                                 <div class="mdui-col-sm-2 mdui-text-right">{{ human_filesize(f.file_size) }}</div>
                                 <div class="mdui-col-sm-2 mdui-text-right">
-                                    <i v-if="f.file_type !== 'folder'" class="mdui-icon material-icons icon-sort">file_download</i>
+                                    <i v-if="f.file_type !== 'folder'"
+                                        class="mdui-icon material-icons icon-sort">file_download</i>
                                 </div>
                             </a>
-                        </li>            
+                        </li>
                     </template>
                 </template>
                 <template v-else>
@@ -110,12 +119,12 @@ function dateFormat(time) {
                         </div>
                         <h3>文件获取中。。。</h3>
                     </div>
-                </template>                
+                </template>
             </ul>
         </div>
     </div>
 
-    <Readme v-if="haveReadme && readme != '' " :readme="readme" />
+    <Readme v-if="haveReadme && readme != ''" :readme="readme" />
 </template>
 
 <script>
