@@ -2,12 +2,12 @@
 const express = require('express');
 const router = express.Router();
 
-const {onedrive, cache} = require("../model/OneDrive");
-const {site} = require("../model/config");
+const { onedrive, cache } = require("../model/OneDrive");
+const { site } = require("../model/config");
 
-router.post('/api/GetItem', function(req, res) {
+router.post('/api/GetItem', function (req, res) {
 
-    const {path} = req.body;
+    const { path } = req.body;
 
     let sitePath = site.root + path;
 
@@ -18,43 +18,43 @@ router.post('/api/GetItem', function(req, res) {
         sitePath = sitePath.substring(0, sitePath.length - 1);
     }
 
-    cache.GetFileList(sitePath,function(err,result){
+    cache.GetFileList(sitePath, function (err, result) {
         // console.log(result);
-        
-        if (result && result.length > 0){
+
+        if (result && result.length > 0) {
             res.json({
-                code:"00",
-                msg:"获取成功",
-                data:result,
+                code: "00",
+                msg: "获取成功",
+                data: result,
                 title: `${path} - ${site.name}`
             })
-        }else{
+        } else {
             if (err) console.log(err);
             res.json({
-                code:"99",
-                msg:"获取失败",                
-                data:[]
+                code: "99",
+                msg: "获取失败",
+                data: []
             })
         }
     })
 });
 
 
-router.post("/api/GetFileData",function(req,res){
-    let {file_id} = req.body;
-    
-    cache.GetFileData(file_id, function(err, body){
-        if (!err){
+router.post("/api/GetFileData", function (req, res) {
+    let { file_id } = req.body;
+
+    cache.GetFileData(file_id, function (err, body) {
+        if (!err) {
             res.json({
-                code:"00",
-                msg:"获取成功",
-                data:body
+                code: "00",
+                msg: "获取成功",
+                data: body
             })
-        }else{
+        } else {
             res.json({
-                code:"99",
-                msg:"获取失败",
-                data:[]
+                code: "99",
+                msg: "获取失败",
+                data: []
             })
         }
     })
@@ -65,6 +65,6 @@ router.post("/api/GetFileData",function(req,res){
 
 
 
-module.exports = function(){
+module.exports = function () {
     return router;
 }

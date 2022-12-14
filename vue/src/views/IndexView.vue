@@ -11,7 +11,7 @@ const FileList = defineAsyncComponent(() => import('../components/FileList.vue')
 const route = useRoute()
 
 let path = computed(() => {
-    return decodeURIComponent(route.params.path);
+    return decodeURIComponent(route.params.path || '/');
 })
 let pathArr = computed(() => {
     let arr = path.value.split('/')
