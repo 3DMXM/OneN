@@ -1,0 +1,30 @@
+{
+  "name": "onex.aoe.top",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050"
+  },
+  "dependencies": {
+    "@vue/cli-service": "^5.0.6",
+    "axios": "^0.26.1",
+    "github-markdown-css": "^5.1.0",
+    "less": "^4.1.2",
+    "loaders.css": "^0.1.2",
+    "marked": "^4.0.12",
+    "mdui": "^1.0.2",
+    "moment": "^2.29.1",
+    "path": "^0.12.7",
+    "vue": "^3.2.31",
+    "vue-google-adsense": "^2.0.0",
+    "vue-loaders": "^4.1.4",
+    "vue-router": "^4.0.12",
+    "vue-scriptx": "^0.2.5",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.2",
+    "vite": "^2.8.4"
+  }
+}
